@@ -1,0 +1,13 @@
+[information]
+exe: test-threaded-rw
+shown_name: bplustree-threaded-rw
+arguments: ""
+parallel: pthread
+
+[environment]
+
+[sampling]
+cycles?precise--2 : 10000000
+MEM_UOPS_RETIRED?ALL_STORES : 1000000
+RTM_RETIRED?ABORTED : 1000
+RTM_RETIRED?COMMIT : 1000

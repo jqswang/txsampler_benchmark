@@ -1,0 +1,14 @@
+* About the makefile:
+----->Changed sscc to gcc
+----->Added -fopenmp flag
+
+* Parallelized the iterations for loop (line 128)
+
+* To run the program with multiple threads, use the argument -t to define number of threads
+----->./md5 -i 7 -c 10 -t 1 
+----->./md5 -i 7 -c 10 -t 2
+----->./md5 -i 7 -c 10 -t 3
+----->./md5 -i 7 -c 10 -t 4
+(optional: -o for an output file)
+ 
+

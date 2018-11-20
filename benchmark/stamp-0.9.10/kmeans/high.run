@@ -1,0 +1,13 @@
+[information]
+exe: build_rtm/kmeans
+shown_name: stamp-kmeans_high
+arguments: "-m15 -n15 -t0.00001 -i $INPUT_ROOT$/stamp/kmeans/random-n65536-d32-c16.txt -p$THREADS$"
+parallel: omp
+
+[environment]
+
+[sampling]
+PAPI_TOT_CYC: 20000000
+RTM_RETIRED?ABORTED: 40000
+RTM_RETIRED?COMMIT: 3000
+MEM_UOPS_RETIRED?ALL_STORES: 1000000

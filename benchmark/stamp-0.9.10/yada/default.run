@@ -1,0 +1,13 @@
+[information]
+exe: build_rtm/yada
+shown_name: stamp-yada
+arguments: "-a25 -i $INPUT_ROOT$/stamp/yada/ttimeu1000000.2 -t$THREADS$"
+parallel: omp
+
+[environment]
+
+[sampling]
+PAPI_TOT_CYC : 20000000
+RTM_RETIRED?ABORTED: 10000
+RTM_RETIRED?COMMIT: 1000
+MEM_UOPS_RETIRED?ALL_STORES: 1000000

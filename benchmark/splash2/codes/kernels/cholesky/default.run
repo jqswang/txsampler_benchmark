@@ -1,0 +1,13 @@
+[information]
+exe: CHOLESKY 
+shown_name: splash2-cholesky
+arguments: "-p14 inputs/tk29.O"
+parallel: pthread
+
+[environment]
+
+[sampling]
+cycles?precise--2 : 1000000
+MEM_UOPS_RETIRED?ALL_STORES : 2000000
+RTM_RETIRED?ABORTED : 10000
+RTM_RETIRED?COMMIT : 10000

@@ -1,0 +1,14 @@
+[information]
+exe: inst/$PARSECPLAT$/bin/netdedup 
+shown_name: parsec3-netdedup
+launch_script: "run-hpc.sh 3 native"
+arguments: ""
+parallel: pthread
+
+[environment]
+
+[sampling]
+cycles?precise--2 : 20000000
+MEM_UOPS_RETIRED?ALL_STORES : 5000000
+RTM_RETIRED?ABORTED : 1000
+RTM_RETIRED?COMMIT : 30000

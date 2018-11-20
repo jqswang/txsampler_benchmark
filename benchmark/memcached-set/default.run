@@ -1,0 +1,13 @@
+[information]
+exe: memcached/build_rtm/bin/memcached
+shown_name: memcached
+launch_script: run-hpc.sh
+arguments: ""
+parallel: pthread
+
+
+[sampling]
+PAPI_TOT_CYC: 10000000
+RTM_RETIRED?ABORTED : 300
+RTM_RETIRED?COMMIT: 100000
+MEM_UOPS_RETIRED?ALL_STORES: 10000000

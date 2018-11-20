@@ -1,0 +1,16 @@
+[information]
+exe: ex_thread
+shown_name: berkeley-db-ex-thread
+launch_script: run-hpc.sh
+arguments: ""
+parallel: pthread
+
+[environment]
+
+[sampling]
+cycles?precise--2 : 30000000
+MEM_UOPS_RETIRED?ALL_STORES : 10000000
+RTM_RETIRED?ABORTED : 5000
+RTM_RETIRED?COMMIT : 200000
+
+

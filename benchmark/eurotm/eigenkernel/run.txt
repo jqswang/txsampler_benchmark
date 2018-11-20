@@ -1,0 +1,4 @@
+mpirun -np 4 bin/eigbench -s general_scalapack matrix/ELSES_MATRIX_BNZ30_A.mtx matrix/ELSES_MATRIX_BNZ30_B.mtx
+
+##NOTES:
+No critical sections found

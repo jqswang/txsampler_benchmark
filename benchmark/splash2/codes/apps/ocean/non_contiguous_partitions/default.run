@@ -1,0 +1,13 @@
+[information]
+exe: OCEAN 
+shown_name: splash2-ocean-cp
+arguments: "-n16386 -p8 -e1e-07 -r20000 -t28800"
+parallel: pthread
+
+[environment]
+
+[sampling]
+cycles?precise--2 : 10000000
+MEM_UOPS_RETIRED?ALL_STORES : 3000000
+RTM_RETIRED?ABORTED : 500
+RTM_RETIRED?COMMIT : 1000

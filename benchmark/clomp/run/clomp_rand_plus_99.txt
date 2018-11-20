@@ -1,0 +1,4 @@
+[information]
+exe: clomp
+shown_name: clomp_rare_conflicts
+arguments: "$THREADS$ 1 x8 d6144 128 firstZone%/2,184,firstZone 3 1 0 6 1000"

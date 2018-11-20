@@ -1,0 +1,1 @@
+In rng.h, move the random number generator out

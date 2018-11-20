@@ -1,0 +1,34 @@
+ROOT = ../../..
+
+include $(ROOT)/common/Makefile.common
+
+CFLAGS += -DMICROBENCH
+
+BINS = $(BINDIR)/$(STM)-newlf-at-rle $(BINDIR)/$(STM)-newlf-atmove-rle $(BINDIR)/$(STM)-newlf-atnest-rle
+
+LDFLAGS := $(subst -lrtm,-lrtm_rle,$(LDFLAGS))
+
+.PHONY:	all main main_move clean
+
+all:	main_move #main
+
+newavltree.o:
+	$(CC) $(CFLAGS) -c -o newavltree.o newavltree.c
+
+intset.o: newavltree.h
+	$(CC) $(CFLAGS) -c -o intset_rle.o intset_rle.c
+
+test.o: newavltree.h intset.h
+	$(CC) $(CFLAGS) -c -o test.o test.c
+
+main: newavltree.o intset_rle.o test.o
+	$(CC) $(CFLAGS) newavltree.o intset_rle.o test.o -o $(BINDIR)/$(STM)-newlf-at $(LDFLAGS)
+
+move_test.o: newavltree.h intset.h
+	$(CC) $(CFLAGS) -c -o move_test.o move_test.c
+
+main_move: newavltree.o intset_rle.o move_test.o
+	$(CC) $(CFLAGS) newavltree.o intset_rle.o move_test.o -o $(BINDIR)/$(STM)-newlf-atmove-rle $(LDFLAGS)
+
+clean:
+	-rm -f $(BINS) *.o

@@ -1,0 +1,13 @@
+[information]
+exe: bin/RTM-avl-move 
+shown_name: synchrobench-avltree
+arguments: "-n $THREADS$ -d 100000 -u 20 -m 0 -a 0 -i 16000 -r 32000"
+parallel: pthread
+
+[environment]
+
+[sampling]
+cycles?precise--2 : 20000000
+MEM_UOPS_RETIRED?ALL_STORES : 10000000
+RTM_RETIRED?ABORTED : 100000
+RTM_RETIRED?COMMIT : 100000

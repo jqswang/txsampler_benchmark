@@ -1,0 +1,13 @@
+[information]
+exe: build_rtm/labyrinth
+shown_name: stamp-labyrinth
+arguments: "-i $INPUT_ROOT$/stamp/labyrinth/random-x512-y512-z7-n512.txt -t$THREADS$"
+parallel: omp
+
+[environment]
+
+[sampling]
+PAPI_TOT_CYC: 20000000
+RTM_RETIRED?ABORTED: 10
+RTM_RETIRED?COMMIT: 10
+MEM_UOPS_RETIRED?ALL_STORES: 1000000

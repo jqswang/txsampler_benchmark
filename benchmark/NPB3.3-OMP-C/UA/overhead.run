@@ -1,0 +1,12 @@
+[information]
+exe: build_rtm/ua
+shown_name: NPB-ua-overhead
+arguments:
+parallel: omp
+
+[sampling]
+PAPI_TOT_CYC: 10000000
+RTM_RETIRED?COMMIT: 1000000
+RTM_RETIRED?ABORTED: 1000
+MEM_UOPS_RETIRED?ALL_STORES: 10000000
+

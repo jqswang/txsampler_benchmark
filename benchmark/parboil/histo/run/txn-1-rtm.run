@@ -1,0 +1,14 @@
+[information]
+exe: build_rtm_naive/histo
+shown_name: parboil-histo-txn-1-native
+arguments: "5000 -i $INPUT_ROOT$/parboil/histo/large/input/img.bin"
+parallel: omp
+
+[environment]
+TXN_GRAN: 1
+
+[sampling]
+PAPI_TOT_CYC: 10000000
+RTM_RETIRED?ABORT: 80000
+RTM_RETIRED?COMMIT: 1000000
+MEM_UOPS_RETIRED?ALL_STORES:10000000

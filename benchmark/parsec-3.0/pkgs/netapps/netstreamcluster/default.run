@@ -1,0 +1,14 @@
+[information]
+exe: inst/$PARSECPLAT$/bin/server 
+shown_name: parsec3-netstreamcluster
+launch_script: "run-hpc.sh 10 native"
+arguments: ""
+parallel: pthread
+
+[environment]
+
+[sampling]
+cycles?precise--2 : 50000000
+MEM_UOPS_RETIRED?ALL_STORES : 1000000
+RTM_RETIRED?ABORTED : 10000
+RTM_RETIRED?COMMIT : 10000

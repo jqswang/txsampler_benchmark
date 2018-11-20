@@ -1,0 +1,11 @@
+[information]
+exe: build_rtm/ua
+shown_name: NPB-ua
+arguments:
+parallel: omp
+
+[sampling]
+RTM_RETIRED?COMMIT: 200000
+RTM_RETIRED?ABORTED: 1000
+MEM_UOPS_RETIRED?ALL_STORES: 50000000
+

@@ -1,0 +1,2 @@
+1. Replace mutex lock (just a few)
+2. For atomic operation, make changes in AtomicPtr.h

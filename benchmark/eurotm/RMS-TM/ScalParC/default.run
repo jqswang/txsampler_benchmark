@@ -1,0 +1,13 @@
+[information]
+exe: scalparc 
+shown_name: rms-tm-scalparc
+arguments: "inputs/para_F26-A64-D250K/F26-A64-D250K.tab 8000000 64 2 $THREADS$"
+parallel: pthread
+
+[environment]
+
+[sampling]
+cycles?precise--2 : 10000000
+MEM_UOPS_RETIRED?ALL_STORES : 5000000
+RTM_RETIRED?ABORTED : 500
+RTM_RETIRED?COMMIT : 1000

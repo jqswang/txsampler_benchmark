@@ -1,0 +1,13 @@
+[information]
+exe: bin/RTM-newlf-atmove 
+shown_name: synchrobench-newif
+arguments: "-n $THREADS$ -d 100000 -u 20 -m 20 -a 0 -i 16000 -r 32000"
+parallel: pthread
+
+[environment]
+
+[sampling]
+cycles?precise--2 : 10000000
+MEM_UOPS_RETIRED?ALL_STORES : 5000000
+RTM_RETIRED?ABORTED : 10000
+RTM_RETIRED?COMMIT : 30000

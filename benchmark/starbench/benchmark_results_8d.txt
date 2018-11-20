@@ -1,0 +1,115 @@
+============== OpenMP ==============
+
+---- kMeans Clustering ----
+Input file:     /home/guest1/starbench-modified/input/edge
+numObjs       = 17695
+numCoords     = 18
+numClusters   = 2000
+threshold     = 0.0010
+I/O time           =     0.0065 sec
+Computation timing =     3.4686 sec
+============= Pthreads =============
+
+---- kMeans Clustering ----
+Number of threads = 8
+Input file:     /home/guest1/starbench-modified/input/edge
+numObjs       = 17695
+numCoords     = 18
+numClusters   = 2000
+threshold     = 0.0010
+I/O time           =     0.0064 sec
+Computation timing =     3.4834 sec
+============ Sequential ============
+
+---- kMeans Clustering ----
+Input file:     /home/guest1/starbench-modified/input/edge
+numObjs       = 17695
+numCoords     = 18
+numClusters   = 2000
+threshold     = 0.0010
+I/O time           =     0.0064 sec
+Computation timing =    26.9616 sec
+============== OpenMP ==============
+--- StarBENCH - ray-rot Workload ---
+Total: 12.344s
+============= Pthreads =============
+--- StarBENCH - ray-rot Workload ---
+Total: 12.214s
+============ Sequential ============
+--- StarBENCH - ray-rot Workload ---
+RayTracing Kernel:
+Width: 1920	 Height: 1080
+Aspect Ratio: 1.8	 RPP: 1
+Number of lights: 2
+
+Rotation Kernel:
+Width: 1920	 Height: 1080
+Pixels: 2.07M	 Angle: 50°
+Dest. File: /dev/null
+
+Conversion timing:
+Total: 97.341s
+============== OpenMP ==============
+--- StarBENCH - rot-cc Workload ---
+Trying to open image file /home/guest1/starbench-modified/input/Berlin_Botanischer-Garten_HB_02.ppm ... OK.
+Total: 2.484s
+============= Pthreads =============
+--- StarBENCH - rot-cc Workload ---
+Trying to open image file /home/guest1/starbench-modified/input/Berlin_Botanischer-Garten_HB_02.ppm ... OK.
+Total: 2.483s
+============ Sequential ============
+--- StarBENCH - rot-cc Workload ---
+Trying to open image file /home/guest1/starbench-modified/input/Berlin_Botanischer-Garten_HB_02.ppm ... OK.
+Compute: 19.13s
+Total: 19.131s
+============== OpenMP ==============
+--- StarBENCH - rotate Kernel ---
+Trying to open image file /home/guest1/starbench-modified/input/Berlin_Botanischer-Garten_HB_02.ppm ... OK.
+Conversion timing:
+Compute: 2.735s
+Total: 3.04s
+============= Pthreads =============
+--- StarBENCH - rotate Kernel ---
+Trying to open image file /home/guest1/starbench-modified/input/Berlin_Botanischer-Garten_HB_02.ppm ... OK.
+Conversion timing:
+Compute: 1.155s
+Total: 1.462s
+============ Sequential ============
+--- StarBENCH - rotate Kernel ---
+Trying to open image file /home/guest1/starbench-modified/input/Berlin_Botanischer-Garten_HB_02.ppm ... OK.
+Conversion timing:
+Compute: 8.963s
+Total: 9.269s
+============== OpenMP ==============
+============= Pthreads =============
+============ Sequential ============
+============== OpenMP ==============
+
+I/O time: 13.758
+Time: 2.406
+============= Pthreads =============
+
+I/O time: 13.757
+Time: 1.660
+============ Sequential ============
+
+I/O time: 13.755
+Time: 11.206
+============== OpenMP ==============
+
+I/O time: 0.116
+Time: 2.710
+============= Pthreads =============
+
+I/O time: 0.116
+Time: 2.775
+============ Sequential ============
+
+I/O time: 0.117
+Time: 21.634
+============== OpenMP ==============
+Compute time: 135s (135500 msec)
+============= Pthreads =============
+Compute time: 130s (130686 msec)
+============ Sequential ============
+Compute time: 322s (322197 msec)

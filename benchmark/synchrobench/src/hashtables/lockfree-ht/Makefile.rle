@@ -1,0 +1,44 @@
+ROOT = ../../..
+
+include $(ROOT)/common/Makefile.common
+
+ifeq ($(STM),SEQUENTIAL)
+  BINS = $(BINDIR)/sequential-hashtable
+else ifeq ($(STM),LOCKFREE)
+  BINS = $(BINDIR)/lockfree-hashtable
+else
+  BINS = $(BINDIR)/$(STM)-hashtable-rle
+endif
+
+LDFLAGS := $(subst -lrtm,-lrtm_rle,$(LDFLAGS))
+
+LLREP = $(ROOT)/src/linkedlists/lockfree-list
+CFLAGS += -std=gnu89
+
+.PHONY:	all clean
+
+all:	main
+
+linkedlist.o:
+	$(CC) $(CFLAGS) -c -o $(BUILDIR)/linkedlist.o $(LLREP)/linkedlist.c
+
+harris.o: $(LLREP)/linkedlist.h linkedlist.o
+	$(CC) $(CFLAGS) -c -o $(BUILDIR)/harris.o $(LLREP)/harris.c
+
+ll-intset_rle.o: $(LLREP)/linkedlist.h linkedlist.o harris.o
+	$(CC) $(CFLAGS) -c -o $(BUILDIR)/ll-intset_rle.o $(LLREP)/intset_rle.c
+
+hashtable.o: $(LLREP)/linkedlist.h linkedlist.o harris.o ll-intset_rle.o
+	$(CC) $(CFLAGS) -c -o $(BUILDIR)/hashtable.o hashtable.c
+
+intset_rle.o: $(LLREP)/linkedlist.h harris.o hashtable.o
+	$(CC) $(CFLAGS) -c -o $(BUILDIR)/intset_rle.o intset_rle.c
+
+test.o: linkedlist.o harris.o intset_rle.o hashtable.o intset_rle.o
+	$(CC) $(CFLAGS) -c -o $(BUILDIR)/test.o test.c
+
+main: linkedlist.o harris.o ll-intset_rle.o hashtable.o intset_rle.o test.o
+	$(CC) $(CFLAGS) $(BUILDIR)/linkedlist.o $(BUILDIR)/harris.o $(BUILDIR)/ll-intset_rle.o $(BUILDIR)/hashtable.o $(BUILDIR)/intset_rle.o $(BUILDIR)/test.o -o $(BINS) $(LDFLAGS)
+
+clean:
+	-rm -f $(BINS)

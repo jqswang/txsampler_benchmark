@@ -1,0 +1,13 @@
+[information]
+exe: bin/RTM-rbtree
+shown_name: synchrobench-rbtree
+arguments: "-t $THREADS$ -d 100000 -u 20 -i 16000 -r 32000"
+parallel: pthread
+
+[environment]
+
+[sampling]
+cycles?precise--2 : 10000000
+MEM_UOPS_RETIRED?ALL_STORES : 5000000
+RTM_RETIRED?ABORTED : 10000
+RTM_RETIRED?COMMIT : 30000
