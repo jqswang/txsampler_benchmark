@@ -1,7 +1,7 @@
 [information]
-exe: build_rtm/bin/bart
+exe: nufft
 shown_name: bart-nufft
-arguments: "nufft data/traj.ra data/shepplogan.ra data/shepplogan_ksp2.ra"
+arguments: "data/traj.ra data/shepplogan.ra data/shepplogan_ksp2.ra"
 
 [environment]
 
