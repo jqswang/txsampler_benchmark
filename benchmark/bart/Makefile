@@ -82,7 +82,7 @@ CXX ?= g++
 
 ifeq (${RTM}, yes)
 	CPPFLAGS += -DRTM -I${TSX_ROOT}/lib/rtm
-	LDFLAGS += -L${TSX_ROOT}/lib/rtm -lrtm	
+	LDFLAGS += -L${TSX_ROOT}/lib/rtm	
 endif
 
 # openblas
@@ -96,8 +96,6 @@ CPPFLAGS += -DUSE_MACPORTS
 endif
 BLAS_BASE ?= /usr/local/opt/openblas/
 endif
-#BLAS_BASE = ${TSX_ROOT}/lib/OpenBLAS-0.2.19/install
-BLAS_BASE = /home/qwang/intel/compilers_and_libraries_2017.4.196/linux/mkl
 
 
 
@@ -272,10 +270,13 @@ BLAS_L := -L$(BLAS_BASE)/lib -llapacke -lblas
 endif
 endif
 
-BLAS_H := -I$(BLAS_BASE)/include #-I$(BLAS_BASE)/include
-CPPFLAGS += -DINTEL_MKL
+BLAS_H := -I$(BLAS_BASE)/include
+#CPPFLAGS += -DINTEL_MKL
 CFLAGS += -m64
-BLAS_L := -Wl,-rpath=$(BLAS_BASE)/lib/intel64  -L$(BLAS_BASE)/lib/intel64 -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl
+#BLAS_L := -Wl,-rpath=$(BLAS_BASE)/lib/intel64  -L$(BLAS_BASE)/lib/intel64 -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl
+ifeq (${RTM}, yes)
+BLAS_L += -lrtm
+endif
 
 
 
