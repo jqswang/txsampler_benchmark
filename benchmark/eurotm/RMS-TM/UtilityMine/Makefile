@@ -18,7 +18,7 @@ all-clean: clean
 	unlink inputs
 
 inputs:
-	ln -s ${TSX_INPUT}/RMS-TM/utility_mine
+	ln -s ${TSX_INPUT}/RMS-TM/utility_mine inputs
 
 utility_mine: utility.o $(OBJS) $(OBJS2)
 	$(CXX) $(CFLAGS) $(OPTS) -o utility_mine $^ $(LIBS)
