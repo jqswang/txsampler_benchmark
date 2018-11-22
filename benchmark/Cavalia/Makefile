@@ -22,7 +22,7 @@ $(JEMALLOC):
 	cd $(AUX_PREFIX)/jemalloc && \
 	./autogen.sh && \
 	./configure --prefix=$(CURRENT_DIR)/$(AUX_PREFIX)/jemalloc/install && \
-	make -j && make install
+	make -j && (make -k install || true)
 $(LIBCUCKOO):
 	cd $(AUX_PREFIX)/libcuckoo && \
 	autoreconf -fis && \
