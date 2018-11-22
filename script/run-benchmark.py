@@ -26,13 +26,14 @@ def time_execute(prefix_cmd, main_cmd, shell_flag = False):
 	time_cmd = "/usr/bin/time -f %e -o "+time_file_name
 	if g_vars["use_script"]:
 		os.environ["TXSAMPLER_CMD"] = time_cmd + " " + prefix_cmd
+		cmd = main_cmd
 	else:
 		cmd = " ".join([time_cmd,prefix_cmd,main_cmd])
 	try:
 		os.remove(time_file_name)
 	except OSError:
 		pass
-	out,err = execute_command(main_cmd, shell_flag)
+	out,err = execute_command(cmd, shell_flag)
 	with open(time_file_name) as f:
 		time = f.readlines()[0].strip().rstrip()
 	os.remove(time_file_name)
