@@ -1,7 +1,7 @@
 # Makefile for CLOMP_TM
 # Please see COPYRIGHT AND LICENSE at bottom of Makefile
 
-TM_DIR=${TSX_ROOT}/lib_simple
+TM_DIR=${TSX_ROOT}/lib/rtm
 CFLAGS = -DDIVIDE_CALC -DCALC_STRIDE=4 -g -fopenmp -O3 -fno-inline --openmp --param inline-unit-growth=200
 
 
