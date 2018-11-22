@@ -5,7 +5,7 @@ LDFLAGS= -Wl,-rpath=../install/lib -L../install/lib -ldb -lpthread -L${TSX_ROOT}
 .PHONY: clean outputclean
 
 ex_thread: ex_thread.c
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 outputclean:
 	-rm -f __db.* log.00* access.db

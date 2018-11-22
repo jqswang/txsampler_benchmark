@@ -4,7 +4,6 @@ import os
 import shlex
 import subprocess
 import sys
-import time
 from optparse import OptionParser
 
 g_vars = {}
@@ -19,9 +18,25 @@ def execute_command(command, shell_flag=False):
         log_print("EXECUTE: {}".format(command))
 	if g_vars["dry_run"]:
 		return "", "", 0
-	start_time = time.time()
 	out, err = subprocess.Popen(shlex.split(command), shell=shell_flag,stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-	return out, err, time.time()-start_time
+	return out, err
+
+def time_execute(prefix_cmd, main_cmd, shell_flag = False):
+	time_file_name = "/tmp/measured_time.tmp"
+	time_cmd = "/usr/bin/time -f %e -o "+time_file_name
+	if g_vars["use_script"]:
+		os.environ["TXSAMPLER_CMD"] = time_cmd + " " + prefix_cmd
+	else:
+		cmd = " ".join([time_cmd,prefix_cmd,main_cmd])
+	try:
+		os.remove(time_file_name)
+	except OSError:
+		pass
+	out,err = execute_command(main_cmd, shell_flag)
+	with open(time_file_name) as f:
+		time = f.readlines()[0].strip().rstrip()
+	os.remove(time_file_name)
+	return out, err, float(time)
 
 def parse_arguments():
         global g_vars
@@ -75,7 +90,7 @@ def parse_run_file():
 	
 	g_vars["exe"] = fill_environment_variables(config.get("information", "exe"))
 	if config.has_option("information", "launch_script"):
-		g_vars["launch_script"] = fill_environment_variables(Config.get("information", "launch_script"))
+		g_vars["launch_script"] = fill_environment_variables(config.get("information", "launch_script"))
 		g_vars["launch_script"] = strip_quotes(g_vars["launch_script"])
 		g_vars["use_script"] = True
 	else:
@@ -93,7 +108,7 @@ def parse_run_file():
 	
 def native_run(prefix_cmd, main_cmd):
 	for i in range(1, g_vars["iterations"]+1):
-		out, err, time = execute_command(" ".join([prefix_cmd, main_cmd]))
+		out, err, time = time_execute(prefix_cmd, main_cmd)
 		if g_vars["show_output"]:
 			print(out)
 			print(err)
@@ -122,23 +137,20 @@ def txsampler_run(prefix_cmd, main_cmd):
 	for i in range(1, g_vars["iterations"]+1):
 		exe = g_vars["exe"]
 		exe_base = os.path.basename(exe)
-		out, err, _ = execute_command("rm -rf *.hpcstruct hpctoolkit-*")
-		if out and g_vars["show_output"]:
-			print(out)
-		if err and g_vars["show_output"]:
-			print(err)
-		out, err, _ = execute_command("hpcstruct "+ exe)
+		log_print("Cleaning *.hpcstruct hpctoolkit-*")
+		subprocess.Popen("%s %s" % ("rm", "-rf *.hpcstruct hpctoolkit-*"),shell=True).wait()
+		out, err = execute_command("hpcstruct "+ exe)
 		if out and g_vars["show_output"]:
 			print(out)
 		if err and g_vars["show_output"]:
 			print(err)
 		measurement_folder = "hpctoolkit-"+ exe_base+"-measurements"
-		out, err, time = execute_command(" ".join([prefix_cmd, "hpcrun", event_str, main_cmd]))
+		out, err, time = time_execute(" ".join([prefix_cmd, "hpcrun", event_str]), main_cmd)
 		if out and g_vars["show_output"]:
 			print(out)
 		if err and g_vars["show_output"]:
 			print(err)
-		out, err, _ = execute_command("hpcprof-mpi -o hpctoolkit-"+ exe_base+"-database -S ./"+exe_base+".hpcstruct -I ../ "+ measurement_folder)
+		out, err = execute_command("hpcprof-mpi -o hpctoolkit-"+ exe_base+"-database -S ./"+exe_base+".hpcstruct -I ../ "+ measurement_folder)
                 if out and g_vars["show_output"]:
                         print(out)
                 if err and g_vars["show_output"]:

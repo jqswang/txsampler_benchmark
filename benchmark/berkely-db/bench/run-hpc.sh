@@ -1,7 +1,7 @@
 #!/bin/bash
-
+set -x
 
 make outputclean
 sleep 1
-${HPCRUN_CMD} ./ex_thread -i 300000 -r 6 -w 6
+${TXSAMPLER_CMD} ./ex_thread -i 300000 -r 6 -w 6
 
