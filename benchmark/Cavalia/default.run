@@ -3,7 +3,6 @@ exe: build/TpccBenchmark/tpcc_benchmark
 shown_name: cavalia-tpcc
 launch_script: run-hpc.sh
 arguments: ""
-parallel: pthread
 
 [environment]
 

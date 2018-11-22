@@ -1,6 +1,6 @@
 .PHONY: all tpcc-populate clean all-clean
 
-PAPI_LIB_PATH=/home/qwang/tsx/hpcrun_change/papi-5.5.0/install/lib
+PAPI_LIB_PATH=/opt/papi/install/lib
 
 CURRENT_DIR=$(shell pwd)
 TPCC_DIR=$(CURRENT_DIR)/build/TpccBenchmark
@@ -35,8 +35,8 @@ $(LIBZMQ):
 	make -j && make install
 $(LZ4):
 	cd $(AUX_PREFIX)/lz4 && \
-	make --prefix=$(CURRENT_DIR)/$(AUX_PREFIX)/lz4/install && \
-	make install --prefix=$(CURRENT_DIR)/$(AUX_PREFIX)/lz4/install
+	make PREFIX=$(CURRENT_DIR)/$(AUX_PREFIX)/lz4/install && \
+	make install PREFIX=$(CURRENT_DIR)/$(AUX_PREFIX)/lz4/install
 
 tpcc-populate: build/TpccBenchmark/tpcc_benchmark
 	$(TPCC_DIR)/tpcc_benchmark -a0 -sf12 -sf1	
