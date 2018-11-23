@@ -1,6 +1,6 @@
-INC=-I../common -I${TSX_ROOT}/lib_simple
+INC=-I../common -I${TSX_ROOT}/lib/rtm
 CFLAGS=-fopenmp -g -O3 -fno-inline -DRTM $(INC)
-LDFLAGS=-lgomp -lm -lrtm -L${TSX_ROOT}/lib_simple
+LDFLAGS=-lgomp -lm -lrtm -L${TSX_ROOT}/lib/rtm
 
 SRCS := main.c util.c ../common/parboil.c
 BASES := $(basename $(SRCS))

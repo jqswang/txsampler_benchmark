@@ -1,5 +1,6 @@
 # Makefile for dedup kernel
 TARGET=dedup
+PARSEC_ROOT=${TSX_ROOT}/benchmark/parsec-2.1
 
 BIGFILE_CFLAGS=$(shell getconf LFS_CFLAGS)
 
