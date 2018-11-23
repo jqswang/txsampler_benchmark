@@ -1,3 +1,3 @@
 #!/bin/bash
 set -x
-${HPCRUN_CMD} ./BARNES < input
+${TXSAMPLER_CMD} ./BARNES < input

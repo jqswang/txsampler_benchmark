@@ -3,12 +3,11 @@ exe: WATER-NSQUARED
 shown_name: splash2-water-nsquared
 launch_script: "run-hpc.sh"
 arguments: ""
-parallel: pthread
 
 [environment]
 
 [sampling]
 cycles?precise--2 : 20000000
 MEM_UOPS_RETIRED?ALL_STORES : 20000000
-RTM_RETIRED?ABORTED : 500
+RTM_RETIRED?ABORTED : 5000
 RTM_RETIRED?COMMIT : 5000

@@ -3,7 +3,6 @@ exe: BARNES
 shown_name: splash2-barnes
 launch_script: "run-hpc.sh"
 arguments: ""
-parallel: pthread
 
 [environment]
 

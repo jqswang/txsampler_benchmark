@@ -1,3 +1,3 @@
 #!/bin/bash
 set -x
-${HPCRUN_CMD} ./WATER-NSQUARED < input
+${TXSAMPLER_CMD} ./WATER-NSQUARED < input

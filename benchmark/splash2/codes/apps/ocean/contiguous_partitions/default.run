@@ -2,7 +2,6 @@
 exe: OCEAN 
 shown_name: splash2-ocean-cp
 arguments: "-n16386 -p8 -e1e-07 -r20000 -t28800"
-parallel: pthread
 
 [environment]
 

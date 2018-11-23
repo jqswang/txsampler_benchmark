@@ -1,1 +1,0 @@
-The number of cores seems to be a power of 2 in order to avoid deadlock
