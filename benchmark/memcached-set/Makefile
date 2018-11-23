@@ -17,7 +17,7 @@ twemperf/configure:
 memcached:  memcached/memcached-debug
 
 memcached/memcached-debug:
-	cd memcached && ./make.sh rtm
+	cd memcached && ./compile.sh rtm
 
 
 	
