@@ -44,7 +44,7 @@ CXXFLAGS += -DUSE_STACKSIZE_CUSTOMIZATION
 # If IGNORE_TRAILING_GARBAGE is not defined: behavior is automatically determined
 # by program name: bzip2, bunzip2, bzcat - ignore garbage; otherwise - not.
 #CXXFLAGS += -DIGNORE_TRAILING_GARBAGE=1
-TM_DIR=${TSX_ROOT}/lib_simple
+TM_DIR=${TSX_ROOT}/lib/rtm
 
 # Add thread-related flags
 CXXFLAGS += $(CXXFLAGS_PTHREAD)

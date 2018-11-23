@@ -1,12 +1,10 @@
 [information]
 exe: build_rtm/pbzip2
 shown_name: pbzip2
-arguments: "-k -f -p$THREADS$ $INPUT_ROOT$/benchmark-single/pbzip2/test50Gb.db"
-parallel: pthread
-
+arguments: "-k -f -p$THREADS$ $TSX_INPUT$/pbzip2/test50Gb.db"
 
 [sampling]
-PAPI_TOT_CYC: 10000000
+cycles?precise--2: 10000000
 RTM_RETIRED?ABORTED : 300
 RTM_RETIRED?COMMIT: 100000
 MEM_UOPS_RETIRED?ALL_STORES: 10000000
