@@ -1,6 +1,6 @@
-.PHONY: origin opt measure clean all-clean outputclean
+.PHONY: origin opt clean all-clean outputclean
 
-PARSECDIR=${TSX_ROOT}/benchmark-suite/parsec-3.0
+PARSECDIR=${TSX_ROOT}/benchmark/parsec-3.0
 
 origin: inputs clean
 	-cp ./src/server/encoder.c.origin ./src/server/encoder.c
@@ -11,10 +11,7 @@ opt: inputs clean
 	-PARSEC_TM=RTM PARSECPLAT=linux-rtm $(PARSECDIR)/bin/parsecmgmt -a build -c gcc-pthreads -p netdedup
 
 inputs:
-	ln -s ../../kernels/dedup/inputs
-
-measure:
-	-PARSECPLAT=linux-rtm.gcc-pthreads PARSECDIR=$(PARSECDIR) measure_benchmark.py $(ARGS)
+	ln -s ${TSX_INPUT}/parsec-3.0/pkgs/kernels/dedup/inputs inputs
 
 clean:
 	-PARSECPLAT=linux-rtm $(PARSECDIR)/bin/parsecmgmt -a clean -c gcc-pthreads -p netdedup

@@ -6,6 +6,9 @@
 #
 #
 
+PARSECPLAT=linux-rtm.gcc-pthreads
+PARSECDIR=$TSX_ROOT/benchmark/parsec-3.0
+
 killall -9 netdedup_client
 killall -9 netdedup
 
@@ -53,8 +56,8 @@ PROG_PATH="${PARSECDIR}/pkgs/netapps/netdedup/inst/${PARSECPLAT}/bin"
 
 #Execution
 if [ -z "$NETMODE" ]; then
-  RUN_SERVER="${HPCRUN_CMD} $PROG_PATH/netdedup $PROGARGS_SERVER"
-  RUN_CLIENT="numactl --physcpubind="90" $PROG_PATH/netdedup_client $PROGARGS_CLIENT &"
+  RUN_SERVER="${TXSAMPLER_CMD} $PROG_PATH/netdedup $PROGARGS_SERVER"
+  RUN_CLIENT="$PROG_PATH/netdedup_client $PROGARGS_CLIENT &"
 
   echo "Running"
   echo $RUN_CLIENT

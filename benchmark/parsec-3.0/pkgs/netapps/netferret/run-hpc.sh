@@ -5,7 +5,9 @@
 # Runs the benchmark 
 #
 #
-
+set -x
+PARSECPLAT=linux-rtm.gcc-pthreads
+PARSECDIR=$TSX_ROOT/benchmark/parsec-3.0
 #Arguments
 if [ -n "$1" ]
 then
@@ -65,14 +67,16 @@ esac
 PROG_PATH="${PARSECDIR}/pkgs/netapps/netferret/inst/${PARSECPLAT}/bin"
 
 
-killall -9 $PROG_PATH/client
-killall -9 $PROG_PATH/server
+#killall -9 $PROG_PATH/client
+#killall -9 $PROG_PATH/server
+killall -9 client
+killall -9 server
 
 
 #Execution
 if [ -z "$NETMODE" ]; then
-  RUN_SERVER="${HPCRUN_CMD} $PROG_PATH/server $PROGARGS_SERVER"
-  RUN_CLIENT="numactl --physcpubind="90,94,98" $PROG_PATH/client $PROGARGS_CLIENT &"
+  RUN_SERVER="${TXSAMPLER_CMD} $PROG_PATH/server $PROGARGS_SERVER"
+  RUN_CLIENT="$PROG_PATH/client $PROGARGS_CLIENT &"
 
   echo "Running"
   echo $RUN_CLIENT
