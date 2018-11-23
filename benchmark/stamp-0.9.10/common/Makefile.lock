@@ -5,7 +5,7 @@
 # ==============================================================================
 # Copyright (c) IBM Corp. 2014, and others.
 
-CFLAGS += -DGLOBAL_LOCK -I${TSX_ROOT}/lib
+CFLAGS += -DGLOBAL_LOCK -I${TSX_ROOT}/lib/rtm-stamp
 
 # ==============================================================================
 # Rules
