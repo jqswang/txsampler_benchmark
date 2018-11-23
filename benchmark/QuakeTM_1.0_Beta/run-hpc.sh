@@ -5,7 +5,7 @@ CURRENT_DIR=$(pwd)
 ###tunable variables
 CLIENT_DIR=$CURRENT_DIR/client/TraceBot
 CLIENT_NUM=14 #the number of clients
-CLIENT_CORE_BINDING=(58 62 66 70 74 78 82 86 90 94 98 102 106 110)
+#CLIENT_CORE_BINDING=(58 62 66 70 74 78 82 86 90 94 98 102 106 110)
 
 SERVER_DIR=$CURRENT_DIR/server
 SERVER_NUM=14 #the number of server threads
@@ -20,7 +20,8 @@ fi
 for ((i=0;i<$CLIENT_NUM;i++))
 do
 #  echo "client $i starts";
-  taskset -c ${CLIENT_CORE_BINDING[i]} ./glqwclient -run_trace -name player$i >output/player$i &
+  #taskset -c ${CLIENT_CORE_BINDING[i]} ./glqwclient -run_trace -name player$i >output/player$i &
+  ./glqwclient -run_trace -name player$i >output/player$i &
   sleep 0.1;
 done;
 
@@ -31,7 +32,7 @@ cd $CURRENT_DIR
 #echo "Now starts to launch server"
 ln -s $SERVER_DIR/id1
 #echo $(time ./qwsv -threads $SERVER_NUM -frames $SERVER_FRAMES | grep real)
-eval ${HPCRUN_CMD} $SERVER_DIR/qwsv -threads $SERVER_NUM -frames $SERVER_FRAMES
+eval ${TXSAMPLER_CMD} $SERVER_DIR/qwsv -threads $SERVER_NUM -frames $SERVER_FRAMES
 unlink id1
 sleep 1
 ###Stop clients

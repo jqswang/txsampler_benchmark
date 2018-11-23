@@ -15,6 +15,3 @@ clean:
 	$(MAKE) -C server clean
 	rm -rf output
 	unlink id1
-
-run:
-	-measure_overhead.py default.run
