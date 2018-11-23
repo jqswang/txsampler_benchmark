@@ -35,9 +35,9 @@ def time_execute(prefix_cmd, main_cmd, shell_flag = False):
 		pass
 	out,err = execute_command(cmd, shell_flag)
 	with open(time_file_name) as f:
-		time = f.readlines()[0].strip().rstrip()
-	#os.remove(time_file_name)
-	print(time)
+		time = f.readlines()[-1].strip().rstrip().split()[-1]
+	os.remove(time_file_name)
+	#print(time)
 	return out, err, float(time)
 
 def parse_arguments():
