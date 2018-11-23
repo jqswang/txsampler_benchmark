@@ -2,7 +2,6 @@
 exe: SSCA2
 shown_name: SSCA2
 arguments: "$THREADS$ 19"
-parallel: omp
 
 [environment]
 TXN_GRAN_1: 3

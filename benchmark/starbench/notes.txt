@@ -1,2 +1,0 @@
-It is from https://github.com/vpapadopou/starbench-modified.git
-index: 22b21cf509315e5dcd7dacc97c64d1a097cac6b7

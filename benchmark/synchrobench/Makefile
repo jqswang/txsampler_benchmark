@@ -21,7 +21,7 @@ MALLOC=TC
 
 .PHONY:	clean all $(BENCHS) $(LBENCHS)
 
-all:	rtm #lock spinlock lockfree estm sequential 
+all:	rtm lock spinlock lockfree estm sequential 
 
 lock: clean-build
 	$(MAKE) "LOCK=MUTEX" $(LBENCHS)
