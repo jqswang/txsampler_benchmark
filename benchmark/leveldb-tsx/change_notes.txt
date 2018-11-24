@@ -1,1 +1,0 @@
-For calss XScope, we simply use "TM_BEGIN()" to replace its enter() method and use "TM_END()" to replace its exit() method (while keeping the callback functionality)
