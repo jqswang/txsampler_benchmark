@@ -1,5 +1,5 @@
 [information]
-exe: db_bench_origin
+exe: db_bench
 shown_name: leveldb-db_bench
 arguments: "--threads=$THREADS$ --num=200000"
 parallel: pthread
