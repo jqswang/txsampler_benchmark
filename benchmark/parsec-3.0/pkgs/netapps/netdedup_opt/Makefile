@@ -2,7 +2,7 @@
 
 PARSECDIR=${TSX_ROOT}/benchmark/parsec-3.0
 
-build: inputs
+build: inputs clean
 	-PARSEC_TM=RTM PARSECPLAT=linux-rtm $(PARSECDIR)/bin/parsecmgmt -a build -c gcc-pthreads -p netdedup
 
 inputs:
