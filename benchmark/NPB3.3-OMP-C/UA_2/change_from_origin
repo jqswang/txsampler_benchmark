@@ -1,2 +1,0 @@
-1. Combine adjacent atomic operations in transfer_au.c
-2. Coarsen the TX to contain the loop on Line 464, 607, 572, 537 and 502 in transfer_au.c for original code

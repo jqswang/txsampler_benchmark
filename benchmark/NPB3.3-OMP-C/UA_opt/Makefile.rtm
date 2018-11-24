@@ -2,7 +2,7 @@ SHELL=/bin/sh
 BENCHMARK=ua
 BENCHMARKU=UA
 
-TM_ROOT=$(TSX_ROOT)/lib_simple
+TM_ROOT=$(TSX_ROOT)/lib/rtm
 include ../config/make.def
 
 C_LIB += -L$(TM_ROOT) -lrtm

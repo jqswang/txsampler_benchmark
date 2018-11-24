@@ -1,16 +1,8 @@
 CLASS ?= C
 UPDATE ?= au
 
-.PHONY: all clean origin rtm
-all: origin rtm
+.PHONY: clean rtm
 
-origin: Makefile.origin
-	rm -rf *.o ua
-	@echo $(CLASS)
-	$(MAKE) -f Makefile.$@ CLASS=${CLASS} UPDATE=$(UPDATE)
-	rm -rf build_$@
-	mkdir -p build_$@
-	mv ua build_$@/
 rtm: Makefile.rtm
 	rm -rf *.o ua
 	@echo $(CLASS)
