@@ -1,4 +1,0 @@
-In hashtable.c hash(), delete the bit shifting and XOR the key chunk
-Support external global lock and fine-grained lock (for HTM)
-Add -DBALANCED to optimze the thread assignment
-In encoder.c, move write_file out of TX

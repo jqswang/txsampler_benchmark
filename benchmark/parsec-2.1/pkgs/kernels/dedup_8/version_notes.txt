@@ -1,2 +1,0 @@
-In hashtable.c hash(), delete the bit shifting and XOR the key chunk
-In encoder.c, move write_file out of TX

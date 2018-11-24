@@ -1,2 +1,0 @@
-In hashtable.c hash(), delete the bit shifting and XOR the key chunk
-Reassigned the threads, marked by BALANCED

@@ -1,6 +1,7 @@
 # Makefile for dedup kernel
 TARGET=dedup
 PARSEC_ROOT=${TSX_ROOT}/benchmark/parsec-2.1
+
 BIGFILE_CFLAGS=$(shell getconf LFS_CFLAGS)
 
 CFLAGS += -Wall -std=c99 -fno-strict-aliasing -D_XOPEN_SOURCE=600 -I${PARSEC_ROOT}/pkgs/lib/ssl/include
@@ -11,9 +12,7 @@ DEDUP_OBJ =  hashtable.o queue.o util.o binheap.o tree.o decoder.o dedup.o rabin
 
 #for pthreads
 CFLAGS += -DPARALLEL -pthread
-
 include ${PARSEC_ROOT}/common_flag.mk
-include ${PARSEC_ROOT}/common_flag_rtm.mk
 
 all: $(TARGET)
 include ${PARSEC_ROOT}/common_rule.mk
@@ -21,7 +20,7 @@ include ${PARSEC_ROOT}/common_rule.mk
 .c.o:
 	$(CC) -c $(CFLAGS) $< -o $@
 
-$(TARGET): $(DEDUP_OBJ) librtm.so ssl
+$(TARGET): $(DEDUP_OBJ) ssl
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $(TARGET) $(DEDUP_OBJ) $(LIBS)
 
 clean:
