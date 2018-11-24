@@ -90,7 +90,7 @@ int main(int argc, char* argv[]) {
   }
 
   unsigned int* img = (unsigned int*) malloc (img_width*img_height*sizeof(unsigned int));
-  //unsigned int* img_backup = (unsigned int*) malloc (img_width*img_height*sizeof(unsigned int));
+
   unsigned char* histo = (unsigned char*) calloc (histo_width*histo_height, sizeof(unsigned char));
 
   pb_SwitchToSubTimer(&timers, "Input", pb_TimerID_IO);
@@ -108,11 +108,10 @@ int main(int argc, char* argv[]) {
   pb_SwitchToTimer(&timers, pb_TimerID_COMPUTE);
   qsort(img, img_width*img_height, sizeof(unsigned int), cmpfunc);
 
-  //printf("img_width * img_height = %u\n", img_width * img_height);
+  printf("img_width * img_height = %u\n", img_width * img_height);
+  printf("histo_height * histo_width = %u\n", histo_height * histo_width);
   int iter;
   for (iter = 0; iter < numIterations; iter++){
-    //memcpy(img, img_backup, img_width*img_height*sizeof(unsigned int));
-    //qsort(img, img_width*img_height, sizeof(unsigned int), cmpfunc);
     memset(histo,0,histo_height*histo_width*sizeof(unsigned char));
     unsigned int i,j;
 

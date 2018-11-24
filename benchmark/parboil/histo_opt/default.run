@@ -1,0 +1,13 @@
+[information]
+exe: build_rtm_naive/histo
+shown_name: parboil-histo-rtm-naive
+arguments: "7000 -i $TSX_INPUT$/parboil/histo/large/input/img.bin"
+
+[environment]
+TXN_GRAN: 1
+
+[sampling]
+cycles?precise--2: 10000000
+RTM_RETIRED?ABORTED: 80000
+RTM_RETIRED?COMMIT: 1000000
+MEM_UOPS_RETIRED?ALL_STORES: 10000000
