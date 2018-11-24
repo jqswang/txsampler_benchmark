@@ -1,10 +1,10 @@
 include Makefile.var
 
-TARGET = SSCA2
+TARGET = SSCA2-origin
 
 OBJS = SSCA2.o init.o utils.o genScalData.o gen2DTorus.o \
     computeGraph.o getStartLists.o findSubGraphs.o  \
-    betweennessCentrality.o
+    betweennessCentrality.origin.o
 
 .c.o: defs.h Makefile
 	$(CC) $(INC) $(CFLAGS) -c $<

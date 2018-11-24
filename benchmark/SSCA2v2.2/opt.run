@@ -1,5 +1,5 @@
 [information]
-exe: SSCA2-origin
+exe: SSCA2-opt
 shown_name: SSCA2
 arguments: "$THREADS$ 19"
 

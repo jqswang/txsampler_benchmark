@@ -1,23 +1,10 @@
 
-.PHONY: origin opt clean all-clean
+.PHONY: origin opt clean 
 
 origin: clean
-	-cp betweennessCentrality.c.origin betweennessCentrality.c
-	-$(MAKE) -j -f Makefile.spec
-
+	-$(MAKE) -j -f Makefile.origin.spec
 opt: clean
-	-cp betweennessCentrality.c.opt betweennessCentrality.c
-	-$(MAKE) -j -f Makefile.spec CFLAGS=-DTX_SPLIT 
+	-$(MAKE) -j -f Makefile.opt.spec
 clean:
-	-rm -f betweennessCentrality.c
-	-$(MAKE) -f Makefile.spec clean
-
-all-clean: clean
-
-
-
-
-
-
-
-
+	-$(MAKE) -j -f Makefile.origin.spec clean
+	-$(MAKE) -j -f Makefile.opt.spec clean
