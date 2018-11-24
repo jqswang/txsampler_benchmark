@@ -1,1 +1,0 @@
-1.Reduce the redundant lookup in reservation phase

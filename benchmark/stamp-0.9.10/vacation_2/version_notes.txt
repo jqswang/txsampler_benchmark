@@ -1,2 +1,0 @@
-1.Reduce the redundant lookup in reservation phase
-2.For adding customer, touch the memory before entering the transaction
