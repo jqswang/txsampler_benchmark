@@ -1,0 +1,10 @@
+name,compile_path,compile_command,run_path,run_file
+dedup,parsec-2.1/pkgs/kernels/dedup,make rtm,parsec-2.1/pkgs/kernels/dedup,default.run
+avltree,avl_tree,make rtm-naive,avl_tree,avl_0.0_naive.run
+histo,parboil/histo,make rtm,parboil/histo,default.run
+ua,NPB3.3-OMP-C/UA,make rtm,NPB3.3-OMP-C/UA,default.run
+vacation,stamp-0.9.10/vacation,make rtm,stamp-0.9.10/vacation,high.run
+LevelDB,leveldb-tsx/origin,make,leveldb-tsx/origin,default.run
+SSCA2,SSCA2v2.2,make origin,SSCA2v2.2,default.run
+netdedup,parsec-3.0/pkgs/netapps/netdedup,make build,parsec-3.0/pkgs/netapps/netdedup,default.run
+linkedlist,synchrobench,make,synchrobench,run/linkedlist.run

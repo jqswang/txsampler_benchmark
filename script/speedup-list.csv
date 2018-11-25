@@ -15,5 +15,5 @@ SSCA2,original,SSCA2v2.2,make origin,SSCA2v2.2,default.run
 SSCA2,optimized,SSCA2v2.2,make opt,SSCA2v2.2,opt.run
 netdedup,original,parsec-3.0/pkgs/netapps/netdedup,make build,parsec-3.0/pkgs/netapps/netdedup,default.run
 netdedup,optimized,parsec-3.0/pkgs/netapps/netdedup_opt,make build,parsec-3.0/pkgs/netapps/netdedup_opt,default.run
-linkedlist,original,synchrobench,make rtm,synchrobench,run/linkedlist.run
-linkedlist,optimized,synchrobench,make rtm,synchrobench,run/linkedlist-locknest.run
+linkedlist,original,synchrobench,make,synchrobench,run/linkedlist.run
+linkedlist,optimized,synchrobench,make,synchrobench,run/linkedlist-locknest.run
