@@ -3,8 +3,8 @@ dedup,original,parsec-2.1/pkgs/kernels/dedup,make rtm,parsec-2.1/pkgs/kernels/de
 dedup,optimized,parsec-2.1/pkgs/kernels/dedup_opt,make rtm,parsec-2.1/pkgs/kernels/dedup_opt,measure.run
 avltree,original,avl_tree,make rtm-naive,avl_tree,avl_0.0_naive.run
 avltree,optimized,avl_tree,make rtm-el,avl_tree,avl_0.0_el.run
-histo,original,parboil/histo,make rtm,parboil/histo,default.run
-histo,optimized,parboil/histo_opt,make rtm,parboil/histo_opt,default.run
+histo,original,parboil/histo,make rtm_naive,parboil/histo,default.run
+histo,optimized,parboil/histo_opt,make rtm_txn,parboil/histo_opt,default.run
 ua,original,NPB3.3-OMP-C/UA,make rtm,NPB3.3-OMP-C/UA,default.run
 ua,optimized,NPB3.3-OMP-C/UA_opt,make rtm,NPB3.3-OMP-C/UA_opt,default.run
 vacation,original,stamp-0.9.10/vacation,make rtm,stamp-0.9.10/vacation,high.run

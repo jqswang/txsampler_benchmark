@@ -14,7 +14,7 @@ CFLAGS += -std=gnu89
 
 .PHONY:	all clean 
 
-all: main
+all: clean main
 
 linkedlist.o:
 	$(CC) $(CFLAGS) -c -o $(BUILDIR)/linkedlist.o linkedlist.c
@@ -32,5 +32,5 @@ main: linkedlist.o harris.o intset.o test.o $(TMILB)
 	$(CC) $(CFLAGS) $(BUILDIR)/linkedlist.o $(BUILDIR)/harris.o $(BUILDIR)/intset.o $(BUILDIR)/test.o -o $(BINS)  $(LDFLAGS)
 
 clean: 
-	-rm -f $(BINS) *.o
+	-rm -f $(BUILDIR)/*.o
 

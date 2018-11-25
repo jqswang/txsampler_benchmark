@@ -6,7 +6,7 @@ OBJS = SSCA2.o init.o utils.o genScalData.o gen2DTorus.o \
     computeGraph.o getStartLists.o findSubGraphs.o  \
     betweennessCentrality.opt.o
 
-CFLAGS=-DTX_SPLIT
+CFLAGS += -DTX_SPLIT
 
 .c.o: defs.h Makefile
 	$(CC) $(INC) $(CFLAGS) -c $<

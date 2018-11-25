@@ -1,8 +1,8 @@
 PHONY:	all
 
-BENCHS = src/trees/sftree src/linkedlists/lockfree-list src/hashtables/lockfree-ht src/trees/rbtree src/skiplists/sequential
-LBENCHS = src/linkedlists/lock-coupling-list src/linkedlists/lazy-list src/hashtables/lockbased-ht src/skiplists/skiplist-lock 
-LFBENCHS = src/linkedlists/lockfree-list src/hashtables/lockfree-ht
+BENCHS = src/linkedlists/lockfree-list src/skiplists/sequential
+LBENCHS = src/linkedlists/lock-coupling-list src/linkedlists/lazy-list src/skiplists/skiplist-lock 
+LFBENCHS = src/linkedlists/lockfree-list
 
 .PHONY:	clean all $(BENCHS) $(LBENCHS)
 

@@ -1,16 +1,22 @@
 #!/usr/bin/env python2
 import argparse
+import ConfigParser
 import csv
 import os
 import shlex
 import subprocess
 
+g_vars = {}
 
 def execute_command(command):
+	if g_vars["verbose"]:
+		print("EXECUTE: {}".format(command))
 	out, err = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
 	return out,err
 
 def read_info_file(file_path):
+	if g_vars["verbose"]:
+		print("Start to read {}".format(file_path))
 	apps = {}
 	with open(file_path) as f:
 		reader = csv.DictReader(f)
@@ -39,14 +45,21 @@ def measure_app(config, iterations):
 	time_list = []
 
 	# compile
-	os.chdir(os.path.join(os.environ["TSX_ROOT"], "benchmark", config["compile_path"]))
+	working_dir = os.path.join(os.environ["TSX_ROOT"], "benchmark", config["compile_path"])
+	if g_vars["verbose"]:
+		print("Change working directory to {}".format(working_dir))
+	os.chdir(working_dir)
 	execute_command(config["compile_command"])
 	
 	# run
-	os.chdir(os.path.join(os.environ["TSX_ROOT"], "benchmark", config["run_path"]))
+	working_dir = os.path.join(os.environ["TSX_ROOT"], "benchmark", config["run_path"])
+	if g_vars["verbose"]:
+		print("Change working directory to {}".format(working_dir))
+	os.chdir(working_dir)
 	for _ in range(iterations):
-		out, _ = execute_command("run-benchmark.py -r native -t 14 -c 0,4,8,12,16,20,24,28,32,36,40,44,48,52 " + config["run_file"])
+		out, _ = execute_command("run-benchmark.py -r native -t {} -c {} {}".format(g_vars["num_threads"], g_vars["cpu_list"], config["run_file"]))
 		try:
+			print(out)
 			time = float(filter(lambda x:x.find("##MEASUREMENT:")>=0, out.split("\n"))[0].split()[-1])
 		except ValueError:
 			time = float('nan')
@@ -54,11 +67,16 @@ def measure_app(config, iterations):
 	return time_list
 
 def main():
+	global g_vars
+
 	parser = argparse.ArgumentParser()
 	parser.add_argument("applications", nargs='?', default=None, help="the name list of the applications (separated by ,), or \"all\" for all the available applications")
 	parser.add_argument("-l", "--list", action='store_true', help="list all available applications")
 	parser.add_argument("-i", "--iterations", type=int, default=7, help="the number of times of running before averaging")
+	parser.add_argument("--verbose", action='store_true', help="List every step")
 	args = parser.parse_args()
+
+	g_vars["verbose"] = args.verbose
 
 	# read info file
 	apps = read_info_file(os.path.join(os.path.dirname(os.path.realpath(__file__)), "speedup-list.csv"))
@@ -81,6 +99,25 @@ def main():
 		print("Please specify an application or use 'all'")
 		return
 
+	# resolve other config information
+	
+	config = ConfigParser.ConfigParser()
+	config.optionxform = str
+	config.read(os.path.join(os.environ["TSX_ROOT"], "run.conf"))
+	if not config.has_section("running"):
+		print("Error: The file run.conf is not correctly configured.")
+		return
+
+	if not config.has_option("running", "num_threads"):
+		print("Error: No num_threads in run.conf")
+		return
+	g_vars["num_threads"] = config.get("running", "num_threads")
+	if not config.has_option("running", "cpu_list"):
+		print("Error: No cpu_list in run.conf")
+		return
+	g_vars["cpu_list"] = config.get("running", "cpu_list")
+
+
 	for name in names:
 		origin_time = measure_app(apps[name]["original"], args.iterations)
 		
@@ -91,12 +128,6 @@ def main():
 		speedup = origin_avg / opt_avg
 		
 		print("{}  origin:{}s  opt:{}s  speedup:{}X".format(name, round(origin_avg,2), round(opt_avg,2), round(speedup,2)))
-	
-	
-	# compile and run origin/opt
-
-	# show result
-
 	
 
 main()

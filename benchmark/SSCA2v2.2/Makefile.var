@@ -18,7 +18,7 @@ TARGET = SSCA2
 LIB_RTM = $(TSX_ROOT)/lib/rtm
 
 CC = gcc
-override CFLAGS := -fopenmp -g -O3 -fno-inline -DRTM -std=c99 $(CFLAGS)
+CFLAGS := -fopenmp -g -O3 -fno-inline -DRTM -std=c99 $(CFLAGS)
 
 AR = ar
 ARFLAGS = cr

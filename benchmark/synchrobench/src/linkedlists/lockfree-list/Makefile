@@ -2,22 +2,18 @@ ROOT = ../../..
 
 include $(ROOT)/common/Makefile.common
 
-ifeq ($(STM),RTM)
-  TARGETS = origin locknest rle
-else
-  TARGETS = origin
-endif
+.PHONY:	all clean origin locknest
 
-.PHONY:	all clean 
 
-all:
-	for t in $(TARGETS) ; do \
-		rm -f $(BUILDIR)/*; \
-		$(MAKE) -f Makefile.$$t; \
-	done
+all: origin opt
+
+origin:
+	$(MAKE) -f Makefile.origin
+
+locknest:
+	$(MAKE) -f Makefile.locknest
 
 clean:
-	for t in $(TARGETS) ; do \
-		$(MAKE) -f Makefile.$$t clean; \
-	done
+	$(MAKE) -f Makefile.origin clean
+	$(MAKE) -f Makefile.locknest clean
 

@@ -7,7 +7,7 @@ CFLAGS += -std=gnu89 -DLOCKNEST
 
 .PHONY:	all clean
 
-all: main
+all: clean main
 linkedlist.o:
 	$(CC) $(CFLAGS) -c -o $(BUILDIR)/linkedlist.o linkedlist.c
 
@@ -24,4 +24,4 @@ main: linkedlist.o harris.o intset_locknest.o test.o $(TMILB)
 	$(CC) $(CFLAGS) $(BUILDIR)/linkedlist.o $(BUILDIR)/harris.o $(BUILDIR)/intset_locknest.o $(BUILDIR)/test.o -o $(BINS)  $(LDFLAGS)
 
 clean:
-	-rm -f $(BINS) *.o
+	-rm -f $(BUILDIR)/*.o
