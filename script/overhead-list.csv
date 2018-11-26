@@ -25,15 +25,15 @@ QuakeTM,QuakeTM_1.0_Beta,make,QuakeTM_1.0_Beta,default.run
 SSCA2,SSCA2v2.2,make origin,SSCA2v2.2,default.run
 LevelDB,leveldb-tsx/origin,make,leveldb-tsx/origin,default.run
 Lee-TM,eurotm/lee,make,eurotm/lee,default.run
-netdedup,/parsec-3.0/pkgs/netapps/netdedup,make build,/parsec-3.0/pkgs/netapps/netdedup,default.run
+netdedup,parsec-3.0/pkgs/netapps/netdedup,make build,parsec-3.0/pkgs/netapps/netdedup,default.run
 netferret,parsec-3.0/pkgs/netapps/netferret,make,parsec-3.0/pkgs/netapps/netferret,default.run
 netstreamcluster,parsec-3.0/pkgs/netapps/netstreamcluster,make,parsec-3.0/pkgs/netapps/netstreamcluster,default.run
-kyotocabinet,eurotm/kyotocabinet/rtm,./compile rtm,eurotm/kyotocabinet/rtm,default.run
+kyotocabinet,eurotm/kyotocabinet/rtm,./compile.sh rtm,eurotm/kyotocabinet/rtm,default.run
 ScalParC,eurotm/RMS-TM/ScalParC,make,eurotm/RMS-TM/ScalParC,default.run
 UtilityMine,eurotm/RMS-TM/UtilityMine,make,eurotm/RMS-TM/UtilityMine,default.run
-bart-nufft,bart,./comiple rtm,bart,default.run
-bplus-tree,bplus-tree,./compile rtm,bplus-tree,default.run
-BerkeleyDB,berkely-db,./compile rtm,berkely-db/bench,default.run
+bart-nufft,bart,./compile.sh rtm,bart,default.run
+bplus-tree,bplus-tree,./compile.sh rtm,bplus-tree,default.run
+BerkeleyDB,berkely-db,./compile.sh rtm,berkely-db/bench,default.run
 barnes,splash2/codes/apps/barnes,make,splash2/codes/apps/barnes,default.run
 fmm,splash2/codes/apps/fmm,make,splash2/codes/apps/fmm,default.run
 ocean,splash2/codes/apps/ocean/contiguous_partitions,make,splash2/codes/apps/ocean/contiguous_partitions,default.run
