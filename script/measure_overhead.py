@@ -20,7 +20,7 @@ txsampler_err_list = []
 def execute_command(command):
 	if g_vars["verbose"]:
 		print("EXECUTE: {}".format(command))
-	for _ in range(1):
+	for _ in range(3):
 		child = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = child.communicate()
 		if child.returncode >= 0:
@@ -57,8 +57,8 @@ def measure_time(config, iterations, is_native):
 	for _ in range(iterations):
 		out, err = execute_command(cmd)
 		try:
-			print(out)
-			print(err)
+			#print(out)
+			#print(err)
 			time = float(filter(lambda x:x.find("##MEASUREMENT:")>=0, out.split("\n"))[0].split()[-1])
 		except ValueError:
 			time = float('nan')

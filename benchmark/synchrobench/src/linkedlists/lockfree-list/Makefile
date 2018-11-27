@@ -5,7 +5,7 @@ include $(ROOT)/common/Makefile.common
 .PHONY:	all clean origin locknest
 
 
-all: origin opt
+all: origin locknest
 
 origin:
 	$(MAKE) -f Makefile.origin
