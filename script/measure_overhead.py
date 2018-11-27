@@ -20,11 +20,8 @@ txsampler_err_list = []
 def execute_command(command):
 	if g_vars["verbose"]:
 		print("EXECUTE: {}".format(command))
-	for _ in range(3):
-		child = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		out, err = child.communicate()
-		if child.returncode >= 0:
-			break
+	child = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	out, err = child.communicate()
 	return out,err
 
 def read_info_file(file_path):

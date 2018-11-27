@@ -18,8 +18,9 @@ def execute_command(command, shell_flag=False):
         log_print("EXECUTE: {}".format(command))
 	if g_vars["dry_run"]:
 		return "", "", 0
-	out, err = subprocess.Popen(shlex.split(command), shell=shell_flag,stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-	return out, err
+	child = subprocess.Popen(shlex.split(command), shell=shell_flag,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	out,err = child.communicate()
+	return out, err, child.returncode
 
 def time_execute(prefix_cmd, main_cmd, shell_flag = False):
 	time_file_name = "/tmp/measured_time.tmp"
@@ -33,12 +34,18 @@ def time_execute(prefix_cmd, main_cmd, shell_flag = False):
 		os.remove(time_file_name)
 	except OSError:
 		pass
-	out,err = execute_command(cmd, shell_flag)
-	with open(time_file_name) as f:
-		time = f.readlines()[-1].strip().rstrip().split()[-1]
-	os.remove(time_file_name)
+	out,err, ret_code = execute_command(cmd, shell_flag)
+	if os.path.exists(time_file_name):
+		with open(time_file_name) as f:
+			try:
+				time = f.readlines()[-1].strip().rstrip().split()[-1]
+			except IndexError:
+				time = 0
+		os.remove(time_file_name)
+	else:
+		time = 0
 	#print(time)
-	return out, err, float(time)
+	return out, err, float(time), ret_code
 
 def parse_arguments():
         global g_vars
@@ -110,7 +117,10 @@ def parse_run_file():
 	
 def native_run(prefix_cmd, main_cmd):
 	for i in range(1, g_vars["iterations"]+1):
-		out, err, time = time_execute(prefix_cmd, main_cmd)
+		for _ in range(3):
+			out, err, time, ret_code = time_execute(prefix_cmd, main_cmd)
+			if ret_code >= 0:
+				break
 		if g_vars["show_output"]:
 			print(out)
 			print(err)
@@ -141,18 +151,18 @@ def txsampler_run(prefix_cmd, main_cmd):
 		exe_base = os.path.basename(exe)
 		log_print("Cleaning *.hpcstruct hpctoolkit-*")
 		subprocess.Popen("%s %s" % ("rm", "-rf *.hpcstruct hpctoolkit-*"),shell=True).wait()
-		out, err = execute_command("hpcstruct "+ exe)
+		out, err, _  = execute_command("hpcstruct "+ exe)
 		if out and g_vars["show_output"]:
 			print(out)
 		if err and g_vars["show_output"]:
 			print(err)
 		measurement_folder = "hpctoolkit-"+ exe_base+"-measurements"
-		out, err, time = time_execute(" ".join([prefix_cmd, "hpcrun", event_str]), main_cmd)
+		out, err, time, ret_code = time_execute(" ".join([prefix_cmd, "hpcrun", event_str]), main_cmd)
 		if out and g_vars["show_output"]:
 			print(out)
 		if err and g_vars["show_output"]:
 			print(err)
-		out, err = execute_command("hpcprof-mpi -o hpctoolkit-"+ exe_base+"-database -S ./"+exe_base+".hpcstruct -I ../ "+ measurement_folder)
+		out, err, _ = execute_command("hpcprof-mpi -o hpctoolkit-"+ exe_base+"-database -S ./"+exe_base+".hpcstruct -I ../ "+ measurement_folder)
                 if out and g_vars["show_output"]:
                         print(out)
                 if err and g_vars["show_output"]:

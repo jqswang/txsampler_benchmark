@@ -11,7 +11,8 @@ g_vars = {}
 def execute_command(command):
 	if g_vars["verbose"]:
 		print("EXECUTE: {}".format(command))
-	out, err = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+	child = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	out, err = child.communicate()
 	return out,err
 
 
