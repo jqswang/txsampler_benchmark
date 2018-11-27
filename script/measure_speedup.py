@@ -7,6 +7,8 @@ import shlex
 import subprocess
 
 g_vars = {}
+g_vars["throughput_applications"] = ["linkedlist"]
+
 
 def execute_command(command):
 	if g_vars["verbose"]:
@@ -42,7 +44,7 @@ def average(values):
 		num = len(values)
 	return total / num
 
-def measure_app(config, iterations):
+def measure_app(name, config, iterations):
 	time_list = []
 
 	# compile
@@ -58,10 +60,16 @@ def measure_app(config, iterations):
 		print("Change working directory to {}".format(working_dir))
 	os.chdir(working_dir)
 	for _ in range(iterations):
-		out, _ = execute_command("run-benchmark.py -r native -t {} -c {} {}".format(g_vars["num_threads"], g_vars["cpu_list"], config["run_file"]))
+		out, _ = execute_command("run-benchmark.py -r native -t {} -c {} {} --show-output".format(g_vars["num_threads"], g_vars["cpu_list"], config["run_file"]))
 		try:
 			#print(out)
-			time = float(filter(lambda x:x.find("##MEASUREMENT:")>=0, out.split("\n"))[0].split()[-1])
+			if name in g_vars["throughput_applications"]:
+				if name == "linkedlist":
+					time = float(filter(lambda x:x.startswith("#txs"), out.split("\n"))[0].strip().rstrip().split()[2])
+				else:
+					assert False
+			else:
+				time = float(filter(lambda x:x.find("##MEASUREMENT:")>=0, out.split("\n"))[0].split()[-1])
 		except ValueError:
 			time = float('nan')
 		time_list.append(time)
@@ -120,15 +128,19 @@ def main():
 
 
 	for name in names:
-		origin_time = measure_app(apps[name]["original"], args.iterations)
+		origin_time = measure_app(name, apps[name]["original"], args.iterations)
 		
-		opt_time = measure_app(apps[name]["optimized"], args.iterations) 
+		opt_time = measure_app(name, apps[name]["optimized"], args.iterations) 
 		
 		origin_avg = average(origin_time)
 		opt_avg = average(opt_time)
-		speedup = origin_avg / opt_avg
 		
-		print("{}  origin:{}s  opt:{}s  speedup:{}X".format(name, round(origin_avg,2), round(opt_avg,2), round(speedup,2)))
+		if name in g_vars["throughput_applications"]:
+			speedup = opt_avg / origin_avg
+			print("{}  origin:{}(throughput)  opt:{}(throughput)  speedup:{}X".format(name, round(origin_avg,2), round(opt_avg,2), round(speedup,2)))
+		else:
+			speedup = origin_avg / opt_avg
+			print("{}  origin:{}s  opt:{}s  speedup:{}X".format(name, round(origin_avg,2), round(opt_avg,2), round(speedup,2)))
 	
 
 main()
