@@ -145,6 +145,7 @@ def txsampler_run(prefix_cmd, main_cmd):
 			new_event_list.append((name, interval))
 		event_list = new_event_list
 	event_str = " ".join(["-e " + name + "@" + str(interval) for name,interval in event_list])
+	event_str = event_str.replace("cycles:precise=2", "cycles") # new version fix: without PAPI, precise=2 should not go with the event name
 
 	for i in range(1, g_vars["iterations"]+1):
 		exe = g_vars["exe"]
@@ -180,6 +181,8 @@ def main():
 	os.environ["HTM_TRETRY"] = "5"
 	os.environ["HTM_PRETRY"] = "1"
 	os.environ["HTM_GRETRY"] = "5"
+
+	os.environ["HPCRUN_PRECISE_IP"] = "2"
 
 	parse_run_file()
 
