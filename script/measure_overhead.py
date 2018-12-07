@@ -50,7 +50,7 @@ def measure_time(config, iterations, is_native):
 	if is_native:
 		cmd = "run-benchmark.py -r native -t {} -c {} {} --show-output".format(g_vars["num_threads"], g_vars["cpu_list"], config["run_file"])
 	else:
-		cmd = "run-benchmark.py -r txsampler -t {} -c {} {}".format(g_vars["num_threads"], g_vars["cpu_list"], config["run_file"])
+		cmd = "run-benchmark.py -r txsampler -t {} -c {} {} --show-output".format(g_vars["num_threads"], g_vars["cpu_list"], config["run_file"])
 	for _ in range(iterations):
 		out, err = execute_command(cmd)
 		try:

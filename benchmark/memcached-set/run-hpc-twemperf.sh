@@ -3,7 +3,7 @@ set -x
 MEMCACHED=$(pwd)/memcached/build_rtm/bin/memcached
 MCPERF=$(pwd)/twemperf/install/bin/mcperf
 #echo $HTM_TRETRY
-${TXSAMPLER_CMD} $MEMCACHED -t ${THREADS} > output.txt 2>&1 &
+${TXSAMPLER_CMD} $MEMCACHED -u memcached-user -t ${THREADS} > output.txt 2>&1 &
 
 sleep 2
 
