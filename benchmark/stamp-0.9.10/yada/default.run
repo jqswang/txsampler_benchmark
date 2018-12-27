@@ -4,9 +4,3 @@ shown_name: stamp-yada
 arguments: "-a25 -i $TSX_INPUT$/stamp/yada/ttimeu1000000.2 -t$THREADS$"
 
 [environment]
-
-[sampling]
-cycles?precise--2 : 20000000
-RTM_RETIRED?ABORTED: 10000
-RTM_RETIRED?COMMIT: 10000
-MEM_UOPS_RETIRED?ALL_STORES: 1000000

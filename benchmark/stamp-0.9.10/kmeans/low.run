@@ -4,9 +4,3 @@ shown_name: stamp-kmeans_low
 arguments: "-m40 -n40 -t0.00001 -i $TSX_INPUT$/stamp/kmeans/random-n65536-d32-c16.txt -p$THREADS$"
 
 [environment]
-
-[sampling]
-cycles?precise--2: 20000000
-RTM_RETIRED?ABORTED: 20000
-RTM_RETIRED?COMMIT: 5000
-MEM_UOPS_RETIRED?ALL_STORES: 1000000
