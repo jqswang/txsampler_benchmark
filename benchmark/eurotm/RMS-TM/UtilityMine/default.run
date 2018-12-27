@@ -5,9 +5,3 @@ arguments: "inputs/GEN/data.ntrans_2000.tlen_20.nitems_1.patlen_6 inputs/GEN/off
 parallel: omp
 
 [environment]
-
-[sampling]
-cycles?precise--2 : 10000000
-MEM_UOPS_RETIRED?ALL_STORES : 5000000
-RTM_RETIRED?ABORTED : 1000
-RTM_RETIRED?COMMIT : 40000
