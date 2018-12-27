@@ -1,2 +1,0 @@
-
-args=num_threads 500 in_500K.fluid out.fluid
