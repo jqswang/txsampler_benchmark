@@ -1,5 +1,5 @@
 .PHONY: all clean
-SUBDIRS := Apriori ScalParC UtilityMine
+SUBDIRS := ScalParC UtilityMine
 
 all: $(SUBDIRS)
 	for d in $^ ; do \
