@@ -36,6 +36,7 @@ bplus-tree,bplus-tree,./compile.sh rtm,bplus-tree,default.run
 BerkeleyDB,berkely-db,./compile.sh rtm,berkely-db/bench,default.run
 barnes,splash2/codes/apps/barnes,make,splash2/codes/apps/barnes,default.run
 fmm,splash2/codes/apps/fmm,make,splash2/codes/apps/fmm,default.run
+pbzip2,pbzip2-1.1.13,make rtm,pbzip2-1.1.13,default.run
 ocean,splash2/codes/apps/ocean/contiguous_partitions,make,splash2/codes/apps/ocean/contiguous_partitions,default.run
 raytrace,splash2/codes/apps/raytrace,make,splash2/codes/apps/raytrace,default.run
 water,splash2/codes/apps/water-nsquared,make,splash2/codes/apps/water-nsquared,default.run
