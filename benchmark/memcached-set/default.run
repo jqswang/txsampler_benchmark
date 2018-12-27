@@ -4,9 +4,3 @@ shown_name: memcached
 launch_script: run-hpc-twemperf.sh
 arguments: ""
 
-
-[sampling]
-PAPI_TOT_CYC: 10000000
-RTM_RETIRED?ABORTED : 300
-RTM_RETIRED?COMMIT: 100000
-MEM_UOPS_RETIRED?ALL_STORES: 10000000
