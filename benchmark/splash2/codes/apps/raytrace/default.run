@@ -5,9 +5,3 @@ arguments: "-p$THREADS$ -m896 -a1024 balls4.env"
 parallel: pthread
 
 [environment]
-
-[sampling]
-cycles?precise--2 : 20000000
-MEM_UOPS_RETIRED?ALL_STORES : 3000000
-RTM_RETIRED?ABORTED : 1000
-RTM_RETIRED?COMMIT : 2000
