@@ -4,9 +4,3 @@ shown_name: bart-nufft
 arguments: "data/traj.ra data/shepplogan.ra data/shepplogan_ksp2.ra"
 
 [environment]
-
-[sampling]
-cycles?precise--2 : 30000000
-MEM_UOPS_RETIRED?ALL_STORES : 2000000
-RTM_RETIRED?ABORTED : 500
-RTM_RETIRED?COMMIT : 40000
