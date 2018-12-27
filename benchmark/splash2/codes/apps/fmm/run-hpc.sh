@@ -1,3 +1,3 @@
 #!/bin/bash
 set -x
-${TXSAMPLER_CMD} ./FMM < inputs/input.16777216
+./FMM < inputs/input.16777216
