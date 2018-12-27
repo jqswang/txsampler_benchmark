@@ -19,8 +19,8 @@ histo,parboil/histo,make rtm_naive,parboil/histo,default.run
 dedup,parsec-2.1/pkgs/kernels/dedup,make rtm,parsec-2.1/pkgs/kernels/dedup,default.run
 ua,NPB3.3-OMP-C/UA,make rtm,NPB3.3-OMP-C/UA,default.run
 Memcached,memcached-set,make,memcached-set,default.run
-linkedlist,synchrobench,make rtm,synchrobench,run/linkedlist.run
-skiplist,synchrobench,make rtm,synchrobench,run/skiplist.run
+linkedlist,synchrobench,make,synchrobench,run/linkedlist.run
+skiplist,synchrobench,make,synchrobench,run/skiplist.run
 QuakeTM,QuakeTM_1.0_Beta,make,QuakeTM_1.0_Beta,default.run
 SSCA2,SSCA2v2.2,make origin,SSCA2v2.2,default.run
 LevelDB,leveldb-tsx/origin,make,leveldb-tsx/origin,default.run

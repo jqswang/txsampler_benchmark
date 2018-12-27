@@ -4,9 +4,3 @@ shown_name: synchrobench-skiplist
 arguments: "-t $THREADS$ -d 100000 -u 20 -i 16000 -r 32000"
 
 [environment]
-
-[sampling]
-cycles?precise--2 : 10000000
-MEM_UOPS_RETIRED?ALL_STORES : 5000000
-RTM_RETIRED?ABORTED : 50000
-RTM_RETIRED?COMMIT : 30000

@@ -4,9 +4,3 @@ shown_name: synchrobench-linkedlist-locknest
 arguments: "-t $THREADS$ -d 100000 -u 20 -i 16000 -r 32000"
 
 [environment]
-
-[sampling]
-cycles?precise--2 : 20000000
-MEM_UOPS_RETIRED?ALL_STORES : 2000000
-RTM_RETIRED?ABORTED : 20000
-RTM_RETIRED?COMMIT : 50000
