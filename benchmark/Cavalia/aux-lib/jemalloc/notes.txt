@@ -1,2 +1,0 @@
-It is from https://github.com/jemalloc/jemalloc.git
-Release 5.0.1

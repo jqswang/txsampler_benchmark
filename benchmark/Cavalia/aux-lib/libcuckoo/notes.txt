@@ -1,2 +1,0 @@
-It is from https://github.com/efficient/libcuckoo.git
-Release v0.1
