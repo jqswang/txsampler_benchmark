@@ -4,11 +4,11 @@ CURRENT_DIR=$(pwd)
 
 ###tunable variables
 CLIENT_DIR=$CURRENT_DIR/client/TraceBot
-CLIENT_NUM=14 #the number of clients
+CLIENT_NUM=${THREADS} #the number of clients
 #CLIENT_CORE_BINDING=(58 62 66 70 74 78 82 86 90 94 98 102 106 110)
 
 SERVER_DIR=$CURRENT_DIR/server
-SERVER_NUM=14 #the number of server threads
+SERVER_NUM=${THREADS} #the number of server threads
 SERVER_FRAMES=100 #it determines how long the server will run
 
 ###launch clients
@@ -31,8 +31,7 @@ cd $CURRENT_DIR
 ###launch server
 #echo "Now starts to launch server"
 ln -s $SERVER_DIR/id1
-#echo $(time ./qwsv -threads $SERVER_NUM -frames $SERVER_FRAMES | grep real)
-eval ${TXSAMPLER_CMD} $SERVER_DIR/qwsv -threads $SERVER_NUM -frames $SERVER_FRAMES
+eval $SERVER_DIR/qwsv -threads $SERVER_NUM -frames $SERVER_FRAMES
 unlink id1
 sleep 1
 ###Stop clients

@@ -6,9 +6,3 @@ arguments: ""
 parallel: omp
 
 [environment]
-
-[sampling]
-cycles?precise--2 : 10000000
-MEM_UOPS_RETIRED?ALL_STORES : 5000000
-RTM_RETIRED?ABORTED : 5000
-RTM_RETIRED?COMMIT : 5000
