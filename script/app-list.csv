@@ -1,5 +1,5 @@
 name,compile_path,compile_command,run_path,run_file
-avl,avl_tree,make rtm-naive,avl_tree,avl_0.0_measure.run
+avl,avl_tree,make rtm-naive,avl_tree,avl_0.0_naive.run
 genome,stamp-0.9.10/genome,make rtm,stamp-0.9.10/genome,default.run
 intruder,stamp-0.9.10/intruder,make rtm,stamp-0.9.10/intruder,default.run
 kmeans_high,stamp-0.9.10/kmeans,make rtm,stamp-0.9.10/kmeans,high.run

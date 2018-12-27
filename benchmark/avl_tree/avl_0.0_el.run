@@ -7,8 +7,3 @@ parallel: omp
 [environment]
 LD_LIBRARY_PATH: $TSX_ROOT$/benchmark/avl_tree/lib_rw
 
-[sampling]
-cycles?precise--2 : 10000000
-RTM_RETIRED?COMMIT: 5000
-MEM_UOPS_RETIRED?ALL_STORES: 1000000
-
