@@ -5,9 +5,3 @@ launch_script: "run-hpc.sh 3 native"
 arguments: ""
 
 [environment]
-
-[sampling]
-cycles?precise--2 : 20000000
-MEM_UOPS_RETIRED?ALL_STORES : 5000000
-RTM_RETIRED?ABORTED : 2000
-RTM_RETIRED?COMMIT : 30000
