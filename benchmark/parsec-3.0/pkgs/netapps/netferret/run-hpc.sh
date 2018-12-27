@@ -75,7 +75,7 @@ killall -9 server
 
 #Execution
 if [ -z "$NETMODE" ]; then
-  RUN_SERVER="${TXSAMPLER_CMD} $PROG_PATH/server $PROGARGS_SERVER"
+  RUN_SERVER="$PROG_PATH/server $PROGARGS_SERVER"
   RUN_CLIENT="$PROG_PATH/client $PROGARGS_CLIENT &"
 
   echo "Running"
