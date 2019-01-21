@@ -1,2 +1,0 @@
-It is from https://github.com/zeromq/libzmq.git
-Rlease 4.2.2

@@ -15,7 +15,7 @@ native_list = []
 native_err_list = []
 txsampler_list = []
 txsampler_err_list = []
-
+g_vars["throughput_applications"] = ["linkedlist", "skiplist"]
 
 def execute_command(command):
 	if g_vars["verbose"]:
@@ -45,7 +45,7 @@ def average_std(values):
 		values = values[1:-1]
 	return np.mean(values), np.std(values)
 
-def measure_time(config, iterations, is_native):
+def measure_time(name, config, iterations, is_native):
 	time_list = []
 	if is_native:
 		cmd = "run-benchmark.py -r native -t {} -c {} {} --show-output".format(g_vars["num_threads"], g_vars["cpu_list"], config["run_file"])
@@ -56,7 +56,14 @@ def measure_time(config, iterations, is_native):
 		try:
 			#print(out)
 			#print(err)
-			time = float(filter(lambda x:x.find("##MEASUREMENT:")>=0, out.split("\n"))[0].split()[-1])
+			if name in g_vars["throughput_applications"]:
+				if name in ["linkedlist", "skiplist"]:
+					time = float(filter(lambda x:x.startswith("#txs"), out.split("\n"))[0].strip().rstrip().split()[2])
+				else:
+					assert False
+				time = 1.0 / time
+			else:
+				time = float(filter(lambda x:x.find("##MEASUREMENT:")>=0, out.split("\n"))[0].split()[-1])
 		except ValueError:
 			time = float('nan')
 		time_list.append(time)
@@ -79,14 +86,14 @@ def measure_app(name, config, iterations):
 		print("Change working directory to {}".format(working_dir))
 	os.chdir(working_dir)
 
-	native_times = measure_time(config, iterations, True)
-	txsampler_times = measure_time(config, iterations, False)
+	native_times = measure_time(name, config, iterations, True)
+	txsampler_times = measure_time(name, config, iterations, False)
 
 	native_avg, native_std = average_std(native_times)
 	txsampler_avg, txsampler_std = average_std(txsampler_times)
 	overhead = txsampler_avg / native_avg
 
-	print("{}  native(average:{}, std:{})  txsampler(average:{}, std:{})  overhead:{}X".format(name, round(native_avg,2), round(native_std,2), round(txsampler_avg,2), round(txsampler_std,2), round(overhead,2)))
+	print("{}  native(average:{:.2E}, std:{:.2E})  txsampler(average:{:.2E}, std:{:.2E})  overhead:{}X".format(name, native_avg, native_std, txsampler_avg, txsampler_std, round(overhead,2)))
 
 	global native_list
 	global native_err_list

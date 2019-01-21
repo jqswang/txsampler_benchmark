@@ -3,5 +3,5 @@ set -x
 
 make outputclean
 sleep 1
-${TXSAMPLER_CMD} ./ex_thread -i 300000 -r 6 -w 6
+${TXSAMPLER_CMD} ./ex_thread -i 300000 -r $((THREADS/2)) -w $((THREADS/2))
 

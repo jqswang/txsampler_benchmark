@@ -1,2 +1,0 @@
-1. In Common/RtmLock.h, added another flag EXTERNAL_RTM to use our own RTM library.
-2. Modified cmake related files to add flags, libraries.
